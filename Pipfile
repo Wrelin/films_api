@@ -18,6 +18,8 @@ flask-debugtoolbar = "*"
 pyjwt = "*"
 gunicorn = "*"
 psycopg2 = "*"
+requests = "*"
+bs4 = "*"
 
 [requires]
 python_version = "3.7"
