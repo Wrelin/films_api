@@ -3,3 +3,5 @@
 tests/.pytest_cache
 htmlcov
 .coverage
+__pycache__/
+ *.pyc
