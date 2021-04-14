@@ -20,6 +20,8 @@ gunicorn = "*"
 psycopg2 = "*"
 requests = "*"
 bs4 = "*"
+sanic = "*"
+aiopg = "*"
 
 [requires]
 python_version = "3.7"
