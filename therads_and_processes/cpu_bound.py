@@ -18,14 +18,14 @@ def main():
     [thread.start() for thread in threads]
     [thread.join() for thread in threads]
     dt = datetime.datetime.now() - t_start
-    print(f'Multithreading done in {round(dt.total_seconds(), 2)} s')
-    [print(result) for result in sorted(results)]
+    print(f'Multithreading done in {dt.total_seconds():.2f} s')
+    print(f'{(sum(results) / len(results)):.2f}')
 
     t_start = datetime.datetime.now()
     result = do_math(num=num)
     dt = datetime.datetime.now() - t_start
-    print(f'Single done in {round(dt.total_seconds(), 2)} s')
-    print(result)
+    print(f'Single done in {dt.total_seconds():.2f} s')
+    print(f'{result:.2f}')
 
     pool = multiprocessing.Pool()
     tasks = [pool.apply_async(
@@ -37,20 +37,20 @@ def main():
     pool.close()
     pool.join()
     dt = datetime.datetime.now() - t_start
-    print(f'Multiprocessing done in {round(dt.total_seconds(), 2)} s')
-    [print(result) for result in sorted([task.get() for task in tasks])]
+    print(f'Multiprocessing done in {dt.total_seconds():.2f} s')
+    print(f'{(sum(task.get() for task in tasks) / len(tasks)):.2f}')
 
 
 def do_math(start=0, num=10):
     pos = start
     k_sq = 1000 * 1000
-    ave = 0
+    summ = 0
     while pos < num:
         pos += 1
-        val = math.sqrt((pos - k_sq) * (pos - k_sq))
-        ave += val / num
+        val = math.sqrt((pos - k_sq) ** 2)
+        summ += val
 
-    return ave
+    return summ / (num - start)
 
 
 if __name__ == '__main__':
